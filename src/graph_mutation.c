@@ -55,8 +55,8 @@ int graph_insertEdge(Graph *g, const void *edge, const void *data, void *vertex1
     if (findEdge == 1)
         return -3;
         
-    bst_findElement(vertexEdgeTree, (void*) vertex1, (void**) &inciEdgeList1);
-    bst_findElement(vertexEdgeTree, (void*) vertex2, (void**) &inciEdgeList2);
+    bst_search(vertexEdgeTree, (void*) vertex1, 0, (void**) &inciEdgeList1);
+    bst_search(vertexEdgeTree, (void*) vertex2, 0, (void**) &inciEdgeList2);
         
     bst_insert(edgeDataTree, (void*) edge, (void*) data);
     bst_insert(edgeEnd1Tree, (void*) edge, (void*) pRealVertex1);
@@ -99,8 +99,8 @@ int graph_removeEdge(Graph *g, const void *edge, void **pRealEdge, void **edgeDa
     bst_remove(edgeEnd1Tree, (void*) edge, 0, &vertex1);
     bst_remove(edgeEnd2Tree, (void*) edge, 0, &vertex2);
     
-    bst_findElement(vertexEdgeTree, vertex1, (void**) &inciEdgeList1);
-    bst_findElement(vertexEdgeTree, vertex2, (void**) &inciEdgeList2);
+    bst_search(vertexEdgeTree, vertex1, 0, (void**) &inciEdgeList1);
+    bst_search(vertexEdgeTree, vertex2, 0, (void**) &inciEdgeList2);
     
     elem = dlist_head(inciEdgeList1);
     while (elem != 0 && dlist_data(elem) != edge)

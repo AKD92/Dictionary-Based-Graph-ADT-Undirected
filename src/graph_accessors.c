@@ -176,7 +176,7 @@ int graph_degreeOfVertex(const Graph *g, const void *vertex, unsigned int *degre
     int findOpResult;
 
     vertexTree = (BisTree*) &g->treeVertexUndirectedEdge;
-    findOpResult = bst_findElement(vertexTree, (void*) vertex, (void**) &edgeList);
+    findOpResult = bst_search(vertexTree, (void*) vertex, 0, (void**) &edgeList);
 
     if (findOpResult == -1)
         return -1;
@@ -200,8 +200,8 @@ int graph_endVertices(const Graph *g, const void *edge, void **vertex1, void **v
     edgeTree1 = (BisTree*) &g->treeUndirectedEdgeSource1;
     edgeTree2 = (BisTree*) &g->treeUndirectedEdgeSource2;
 
-    findOpResult1 = bst_findElement(edgeTree1, (void*) edge, &tmpVertex1);
-    findOpResult2 = bst_findElement(edgeTree2, (void*) edge, &tmpVertex2);
+    findOpResult1 = bst_search(edgeTree1, (void*) edge, 0, &tmpVertex1);
+    findOpResult2 = bst_search(edgeTree2, (void*) edge, 0, &tmpVertex2);
 
     if (findOpResult1 == -1 || findOpResult2 == -1) {
         return -1;
@@ -228,8 +228,8 @@ int graph_oppositeVertex(const Graph *g, const void *edge, const void *vOne, voi
     edgeTree1 = (BisTree*) &g->treeUndirectedEdgeSource1;
     edgeTree2 = (BisTree*) &g->treeUndirectedEdgeSource2;
 
-    findOpResult1 = bst_findElement(edgeTree1, (void*) edge, &vertex1);
-    findOpResult2 = bst_findElement(edgeTree2, (void*) edge, &vertex2);
+    findOpResult1 = bst_search(edgeTree1, (void*) edge, 0, &vertex1);
+    findOpResult2 = bst_search(edgeTree2, (void*) edge, 0, &vertex2);
 
     if (findOpResult1 == -1 || findOpResult2 == -1) {
         return -1;
@@ -261,7 +261,7 @@ int graph_incidentEdges(const Graph *g, const void *vertex, DList *incidentEdgeL
     int findOpResult;
     
     vertexTree = (BisTree*) &g->treeVertexUndirectedEdge;
-    findOpResult = bst_findElement(vertexTree, (void*) vertex, (void**) &realEdgeList);
+    findOpResult = bst_search(vertexTree, (void*) vertex, 0, (void**) &realEdgeList);
     
     if (findOpResult == -1) {
         return -1;
@@ -297,8 +297,8 @@ int graph_incidentEdge(const Graph *g, const void *vertex1, const void *vertex2,
     edge1 = edge2 = 0;
 
     vertexEdgeTree = (BisTree*) &g->treeVertexUndirectedEdge;
-    findOpResult1 = bst_findElement(vertexEdgeTree, (void*) vertex1, (void**) &vertex1Edges);
-    findOpResult2 = bst_findElement(vertexEdgeTree, (void*) vertex2, (void**) &vertex2Edges);
+    findOpResult1 = bst_search(vertexEdgeTree, (void*) vertex1, 0, (void**) &vertex1Edges);
+    findOpResult2 = bst_search(vertexEdgeTree, (void*) vertex2, 0, (void**) &vertex2Edges);
     
     if (findOpResult1 == -1 || findOpResult2 == -1)
         return -1;
