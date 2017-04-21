@@ -1,0 +1,7 @@
+3 3
+vertex1
+vertex2
+vertex3
+line1 vertex1 vertex2
+line2 vertex2 vertex3
+line3 vertex3 vertex1

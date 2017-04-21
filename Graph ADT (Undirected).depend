@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1492443995 source:g:\ashish files\documents\dev c++ project files\graph adt (undirected)\src\graph_accessors.c
+	"graph.h"
+	<bst.h>
+	<list.h>
+	<dlist.h>
+
+1492445202 g:\ashish files\documents\dev c++ project files\graph adt (undirected)\src\graph.h
+	<bst.h>
+	<dlist.h>
+	<stdio.h>
+
+1462021580 g:\ashish files\documents\dev c++ project files\dictionary adt (binary search tree)\src\bst.h
+	<list.h>
+	<dlist.h>
+	<queue.h>
+
+1457705091 g:\ashish files\documents\dev c++ project files\linked list adt\src\list.h
+	<stdlib.h>
+
+1457704861 g:\ashish files\documents\dev c++ project files\linked list adt\src\dlist.h
+	<stdlib.h>
+
+1457706267 g:\ashish files\documents\dev c++ project files\stack queue adt\src\queue.h
+	<list.h>
+
+1492372659 source:g:\ashish files\documents\dev c++ project files\graph adt (undirected)\src\graph_init.c
+	"graph.h"
+	<bst.h>
+	<list.h>
+	<dlist.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1492445641 source:g:\ashish files\documents\dev c++ project files\graph adt (undirected)\src\graph_mutation.c
+	"graph.h"
+	<bst.h>
+	<dlist.h>
+	<stdlib.h>
+
+1492444993 source:g:\ashish files\documents\dev c++ project files\graph adt (undirected)\src\main.c
+	"graph.h"
+	<dlist.h>
+	<stdio.h>
+	<string.h>
+
