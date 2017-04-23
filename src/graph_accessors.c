@@ -54,10 +54,10 @@ int graph_verticesToList(const Graph *g, DList *vertexOutList)
     void *aVertex;
 
     vertexTree = (BisTree*) &g->treeVertexData;
-	if (bst_size(vertexTree) == 0) {
-		return -1;
-	}
-	
+    if (bst_size(vertexTree) == 0) {
+        return -1;
+    }
+    
     list_init(&vertexList, 0);
     bst_listKeys(vertexTree, &vertexList);
     
@@ -89,10 +89,10 @@ int graph_edgesToList(const Graph *g, DList *edgeOutList)
     void *anEdge;
 
     edgeTree = (BisTree*) &g->treeUndirectedEdgeData;
-	if (bst_size(edgeTree) == 0) {
-		return -1;
-	}
-	
+    if (bst_size(edgeTree) == 0) {
+        return -1;
+    }
+    
     list_init(&edgeList, 0);
     bst_listKeys(edgeTree, &edgeList);
     
@@ -122,17 +122,17 @@ int graph_getVertex(const Graph *g, const void *vertex, void **pRealVertex, void
     int isPresent;
     
     vertexTree = (BisTree*) &g->treeVertexData;
-    verNode = bst_binarySearch(vertexTree, (void*) vertex, bst_root(vertexTree));
+    verNode = bst_searchNode(vertexTree, (void*) vertex, bst_root(vertexTree));
     isPresent = bst_isInternal(verNode) == 1 ? 1 : 0;
-	
-	if (isPresent == 1) {
-		if (pRealVertex != 0) {
-			*pRealVertex = verNode->pKey;
-		}
-		if (pVertexData != 0) {
-			*pVertexData = verNode->pElement;
-		}
-	}
+    
+    if (isPresent == 1) {
+        if (pRealVertex != 0) {
+            *pRealVertex = verNode->pKey;
+        }
+        if (pVertexData != 0) {
+            *pVertexData = verNode->pElement;
+        }
+    }
     
     return isPresent;
 }
@@ -149,17 +149,17 @@ int graph_getEdge(const Graph *g, const void *edge, void **pRealEdge, void **pEd
     int isPresent;
     
     edgeTree = (BisTree*) &g->treeUndirectedEdgeData;
-    edgeNode = bst_binarySearch(edgeTree, (void*) edge, bst_root(edgeTree));
+    edgeNode = bst_searchNode(edgeTree, (void*) edge, bst_root(edgeTree));
     isPresent = bst_isInternal(edgeNode) == 1 ? 1 : 0;
-	
-	if (isPresent == 1) {
-		if (pRealEdge != 0) {
-			*pRealEdge = edgeNode->pKey;
-		}
-		if (pEdgeData != 0) {
-			*pEdgeData = edgeNode->pElement;
-		}
-	}
+    
+    if (isPresent == 1) {
+        if (pRealEdge != 0) {
+            *pRealEdge = edgeNode->pKey;
+        }
+        if (pEdgeData != 0) {
+            *pEdgeData = edgeNode->pElement;
+        }
+    }
     
     return isPresent;
 }
@@ -308,7 +308,7 @@ int graph_incidentEdge(const Graph *g, const void *vertex1, const void *vertex2,
         anEdge = dlist_data(elem);
         graph_oppositeVertex(g, (const void*) anEdge, vertex1, &aVertex);
         cmpVertexVal = g->cmp_vertex((const void*) aVertex, (const void*) vertex2);
-		
+        
         if (cmpVertexVal == 0) {
             edge1 = anEdge;
             break;
@@ -321,7 +321,7 @@ int graph_incidentEdge(const Graph *g, const void *vertex1, const void *vertex2,
         anEdge = dlist_data(elem);
         graph_oppositeVertex(g, (const void*) anEdge, vertex2, &aVertex);
         cmpVertexVal = g->cmp_vertex((const void*) aVertex, (const void*) vertex1);
-		
+        
         if (cmpVertexVal == 0) {
             edge2 = anEdge;
             break;
@@ -334,7 +334,7 @@ int graph_incidentEdge(const Graph *g, const void *vertex1, const void *vertex2,
         return -2;
     else
         if (edge != 0)
-			*edge = edge1;
+            *edge = edge1;
     
     return 0;
 }
@@ -350,17 +350,17 @@ int graph_adjacentVertices(const Graph *g, const void *vertex, DList *adjacentVe
     DListElem *elemEdge, *elemVertex;
     void *tmpEdge, *tmpVertex;
     int inciOpResult;
-	int retValue;
+    int retValue;
     
-	retValue = 0;
-	dlist_init(&incidentEdges, 0);
+    retValue = 0;
+    dlist_init(&incidentEdges, 0);
     inciOpResult = graph_incidentEdges(g, vertex, &incidentEdges);
     
     if (inciOpResult == -1) {
         retValue = -1;
-		goto END;
+        goto END;
     }
-	
+    
     else {
         elemEdge = dlist_head(&incidentEdges);
         elemVertex = dlist_tail(adjacentVertexList);
@@ -373,9 +373,9 @@ int graph_adjacentVertices(const Graph *g, const void *vertex, DList *adjacentVe
             elemVertex = dlist_tail(adjacentVertexList);
         }
     }
-	
-	END:
-	dlist_destroy(&incidentEdges);
+    
+    END:
+    dlist_destroy(&incidentEdges);
     return retValue;
 }
 
@@ -393,14 +393,14 @@ int graph_areAdjacent(const Graph *g, const void *vertex1, const void *vertex2)
     int retValue;
     
     retValue = 0;
-	dlist_init(&adjacentVertices, 0);
+    dlist_init(&adjacentVertices, 0);
     adjVerticesOpResult = graph_adjacentVertices(g, vertex1, &adjacentVertices);
     
     if (adjVerticesOpResult == -1) {
         retValue = -1;
-		goto END;
+        goto END;
     }
-	
+    
     else {
         elem = dlist_head(&adjacentVertices);
         while (elem != 0) {
@@ -412,8 +412,8 @@ int graph_areAdjacent(const Graph *g, const void *vertex1, const void *vertex2)
             elem = dlist_next(elem);
         }
     }
-	
-	END:
+    
+    END:
     dlist_destroy(&adjacentVertices);
     return retValue;
 }

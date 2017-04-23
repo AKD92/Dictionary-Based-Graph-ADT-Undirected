@@ -23,8 +23,8 @@
 
 
 
-#define MAX_INPUT_CHAR			200
-#define MAX_NAME_CHAR			50
+#define MAX_INPUT_CHAR          200
+#define MAX_NAME_CHAR           50
 
 
 
@@ -103,49 +103,48 @@ void graph_destroy(Graph *g)
 
 
 int graph_readGraphFromText(Graph *g, FILE *pFile) {
-	
-	char strInput[MAX_INPUT_CHAR];
-	char strVertex[MAX_NAME_CHAR], strEdge[MAX_NAME_CHAR];
-	char strVertex1[MAX_NAME_CHAR], strVertex2[MAX_NAME_CHAR];
-	char *pVertex, *pEdge;
-	unsigned int tVertex, tEdge;
-	unsigned int i;
-	unsigned int sLen;
-	int findVertex1, findVertex2;
-	char *pVertex1, *pVertex2;
-	
-	if (g == 0 || pFile == 0) {
-		return -1;
-	}
-	
-	fgets(strInput, MAX_INPUT_CHAR, pFile);
-	sscanf(strInput, "%u %u", &tVertex, &tEdge);
-	graph_init(g, strcmp, strcmp, free, 0, free, 0);
-	/* printf("** tVertex (%u) tEdge (%u)\n", tVertex, tEdge); */
-	
-	for (i = 0; i < tVertex; i++) {
-		fgets(strVertex, MAX_NAME_CHAR, pFile);
-		sLen = strlen(strVertex);
-		*(strVertex + sLen - 1) = 0;
-		pVertex = (char *) malloc(sLen);
-		strcpy(pVertex, (const char *) strVertex);
-		graph_insertVertex(g, pVertex, 0);
-	}
-	
-	for (i = 0; i < tEdge; i++) {
-		fgets(strInput, MAX_INPUT_CHAR, pFile);
-		sscanf(strInput, "%s %s %s", strEdge, strVertex1, strVertex2);
-		
-		findVertex1 = graph_getVertex(g, (const void *) strVertex1, (void **) &pVertex1, 0);
-		findVertex2 = graph_getVertex(g, (const void *) strVertex2, (void **) &pVertex2, 0);
-		
-		if (findVertex1 == 1 && findVertex2 == 1) {
-			pEdge = (char *) malloc(strlen(strEdge) + 1);
-			strcpy(pEdge, strEdge);
-			graph_insertEdge(g, (const void *) pEdge, 0, (void *) pVertex1, (void *) pVertex2);
-		}
-	}
-	return 0;
+    
+    char strInput[MAX_INPUT_CHAR];
+    char strVertex[MAX_NAME_CHAR], strEdge[MAX_NAME_CHAR];
+    char strVertex1[MAX_NAME_CHAR], strVertex2[MAX_NAME_CHAR];
+    char *pVertex, *pEdge;
+    unsigned int tVertex, tEdge;
+    unsigned int i;
+    unsigned int sLen;
+    int findVertex1, findVertex2;
+    char *pVertex1, *pVertex2;
+    
+    if (g == 0 || pFile == 0) {
+        return -1;
+    }
+    
+    fgets(strInput, MAX_INPUT_CHAR, pFile);
+    sscanf(strInput, "%u %u", &tVertex, &tEdge);
+    graph_init(g, strcmp, strcmp, free, 0, free, 0);
+    
+    for (i = 0; i < tVertex; i++) {
+        fgets(strVertex, MAX_NAME_CHAR, pFile);
+        sLen = strlen(strVertex);
+        *(strVertex + sLen - 1) = 0;
+        pVertex = (char *) malloc(sLen);
+        strcpy(pVertex, (const char *) strVertex);
+        graph_insertVertex(g, pVertex, 0);
+    }
+    
+    for (i = 0; i < tEdge; i++) {
+        fgets(strInput, MAX_INPUT_CHAR, pFile);
+        sscanf(strInput, "%s %s %s", strEdge, strVertex1, strVertex2);
+        
+        findVertex1 = graph_getVertex(g, (const void *) strVertex1, (void **) &pVertex1, 0);
+        findVertex2 = graph_getVertex(g, (const void *) strVertex2, (void **) &pVertex2, 0);
+        
+        if (findVertex1 == 1 && findVertex2 == 1) {
+            pEdge = (char *) malloc(strlen(strEdge) + 1);
+            strcpy(pEdge, strEdge);
+            graph_insertEdge(g, (const void *) pEdge, 0, (void *) pVertex1, (void *) pVertex2);
+        }
+    }
+    return 0;
 }
 
 

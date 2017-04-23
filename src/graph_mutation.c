@@ -34,7 +34,7 @@ int graph_insertEdge(Graph *g, const void *edge, const void *data, void *vertex1
     int findEdge, findVertex1, findVertex2;
     int areVertexPresent;
     int areAdjacent;
-	void *pRealVertex1, *pRealVertex2;
+    void *pRealVertex1, *pRealVertex2;
     
     vertexEdgeTree = (BisTree*) &g->treeVertexUndirectedEdge;
     edgeDataTree = (BisTree*) &g->treeUndirectedEdgeData;
@@ -151,15 +151,15 @@ int graph_insertVertex(Graph *g, const void *vertex, const void *data)
 
 
 int graph_removeVertex(Graph *g, const void *vertex,
-								void **pRealVertex, void **vertexData,
-								DList *inciEdgeList, DList *inciEdgeDataList)
+                                void **pRealVertex, void **vertexData,
+                                DList *inciEdgeList, DList *inciEdgeDataList)
 {
     
     BisTree *vertexDataTree;
     BisTree *vertexEdgeTree;
     DList edgeList, *actualEdgeList;
     DListElem *elem;
-	DListElem *elem_out_edge, *elem_out_edge_data;
+    DListElem *elem_out_edge, *elem_out_edge_data;
     void *anEdge, *anEdgeData;
     int findVertex;
     
@@ -172,33 +172,33 @@ int graph_removeVertex(Graph *g, const void *vertex,
 
     dlist_init(&edgeList, 0);
     graph_incidentEdges((const Graph*) g, vertex, &edgeList);
-	
-	if (inciEdgeList != 0) {
-		elem_out_edge = dlist_tail(inciEdgeList);
-	}
-	if (inciEdgeDataList != 0) {
-		elem_out_edge_data = dlist_tail(inciEdgeDataList);
-	}
+    
+    if (inciEdgeList != 0) {
+        elem_out_edge = dlist_tail(inciEdgeList);
+    }
+    if (inciEdgeDataList != 0) {
+        elem_out_edge_data = dlist_tail(inciEdgeDataList);
+    }
     
     elem = dlist_head(&edgeList);
     while (elem != 0) {
         anEdge = dlist_data(elem);
         graph_removeEdge(g, (const void*) anEdge, 0, &anEdgeData);
         elem = dlist_next(elem);
-		
-		if (inciEdgeList != 0) {
-			dlist_ins_next(inciEdgeList, elem_out_edge, (const void *) anEdge);
-			elem_out_edge = dlist_tail(inciEdgeList);
-		}
-		if (inciEdgeDataList != 0) {
-			dlist_ins_next(inciEdgeDataList, elem_out_edge_data, (const void *) anEdgeData);
-			elem_out_edge_data = dlist_tail(inciEdgeDataList);
-		}
+        
+        if (inciEdgeList != 0) {
+            dlist_ins_next(inciEdgeList, elem_out_edge, (const void *) anEdge);
+            elem_out_edge = dlist_tail(inciEdgeList);
+        }
+        if (inciEdgeDataList != 0) {
+            dlist_ins_next(inciEdgeDataList, elem_out_edge_data, (const void *) anEdgeData);
+            elem_out_edge_data = dlist_tail(inciEdgeDataList);
+        }
     }
     
     dlist_destroy(&edgeList);
     bst_remove(vertexDataTree, (void*) vertex, pRealVertex, vertexData);
-    bst_remove(vertexEdgeTree, (void*) vertex, 0,			(void**) &actualEdgeList);
+    bst_remove(vertexEdgeTree, (void*) vertex, 0,           (void**) &actualEdgeList);
     dlist_destroy(actualEdgeList);
     free((void*) actualEdgeList);
     

@@ -94,7 +94,27 @@ int graph_init(Graph *g, int (*cmp_v) (const void *va, const void *vb),
 void graph_destroy(Graph *g);
 
 
+
+
+
+/*
+ *  Read text data frpm pFile and initialize the specified graph object
+ *  According to the data read
+ *
+ *  Parameter:
+ *      g           :   The Graph being created, it must not be initialized
+ *      pFile       :   Pointer to a FILE object which contains graph data
+ *
+ *  Returns
+ *      0 for successful
+ *      -1 pFile or g is NULL
+*/
 int graph_readGraphFromText(Graph *g, FILE *pFile);
+
+
+
+
+
 
 
 
@@ -459,8 +479,8 @@ int graph_removeEdge(Graph *g, const void *edge, void **pRealEdge, void **edgeDa
  *      -1 if the vertex is not present in g
 */
 int graph_removeVertex(Graph *g, const void *vertex,
-								void **pRealVertex, void **vertexData,
-								DList *inciEdgeList, DList *inciEdgeDataList);
+                                void **pRealVertex, void **vertexData,
+                                DList *inciEdgeList, DList *inciEdgeDataList);
 
 
 
