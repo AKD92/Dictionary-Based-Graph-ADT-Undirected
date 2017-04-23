@@ -24,7 +24,7 @@
 1457706267 g:\ashish files\documents\dev c++ project files\stack queue adt\src\queue.h
 	<list.h>
 
-1492372659 source:g:\ashish files\documents\dev c++ project files\graph adt (undirected)\src\graph_init.c
+1492754845 source:g:\ashish files\documents\dev c++ project files\graph adt (undirected)\src\graph_init.c
 	"graph.h"
 	<bst.h>
 	<list.h>
@@ -39,9 +39,14 @@
 	<dlist.h>
 	<stdlib.h>
 
-1492444993 source:g:\ashish files\documents\dev c++ project files\graph adt (undirected)\src\main.c
+1492445663 source:g:\ashish files\documents\dev c++ project files\graph adt (undirected)\src\main.c
 	"graph.h"
 	<dlist.h>
 	<stdio.h>
 	<string.h>
+
+1492766025 g:\ashish files\documents\dev c++ project files\dictionary adt\src\bst.h
+	<list.h>
+	<dlist.h>
+	<queue.h>
 
