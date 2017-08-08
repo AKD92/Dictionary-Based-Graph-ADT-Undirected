@@ -22,6 +22,7 @@
 
 
 
+
 unsigned int graph_numVertices(const Graph *g) {
 
     unsigned int verCount;
@@ -180,6 +181,8 @@ int graph_degreeOfVertex(const Graph *g, const void *vertex, unsigned int *degre
 
     if (findOpResult == -1)
         return -1;
+    else if (degree == 0)
+        return -2;
     else
         *degree = dlist_size(edgeList);
 
@@ -205,6 +208,9 @@ int graph_endVertices(const Graph *g, const void *edge, void **vertex1, void **v
 
     if (findOpResult1 == -1 || findOpResult2 == -1) {
         return -1;
+    }
+    else if (vertex1 == 0 || vertex2 == 0) {
+        return -2;
     }
     else {
         *vertex1 = tmpVertex1;
