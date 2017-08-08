@@ -234,6 +234,9 @@ int graph_oppositeVertex(const Graph *g, const void *edge, const void *vOne, voi
     if (findOpResult1 == -1 || findOpResult2 == -1) {
         return -1;
     }
+    else if (vAnother == 0) {
+        return -3;
+    }
     else {
         if (g->cmp_vertex(vertex1, vOne) == 0)
             *vAnother = vertex2;
@@ -346,15 +349,16 @@ int graph_incidentEdge(const Graph *g, const void *vertex1, const void *vertex2,
 int graph_adjacentVertices(const Graph *g, const void *vertex, DList *adjacentVertexList)
 {
     
-    DList incidentEdges;
+    DList *realEdgeList;
     DListElem *elemEdge, *elemVertex;
     void *tmpEdge, *tmpVertex;
     int inciOpResult;
     int retValue;
+    BisTree *vertexToEdgeTree;
     
     retValue = 0;
-    dlist_init(&incidentEdges, 0);
-    inciOpResult = graph_incidentEdges(g, vertex, &incidentEdges);
+    vertexToEdgeTree = (BisTree *) &g->treeVertexUndirectedEdge;
+    inciOpResult = bst_search(vertexToEdgeTree, (void*) vertex, 0, (void**) &realEdgeList);
     
     if (inciOpResult == -1) {
         retValue = -1;
@@ -362,7 +366,7 @@ int graph_adjacentVertices(const Graph *g, const void *vertex, DList *adjacentVe
     }
     
     else {
-        elemEdge = dlist_head(&incidentEdges);
+        elemEdge = dlist_head(realEdgeList);
         elemVertex = dlist_tail(adjacentVertexList);
         
         while (elemEdge != 0) {
@@ -375,7 +379,6 @@ int graph_adjacentVertices(const Graph *g, const void *vertex, DList *adjacentVe
     }
     
     END:
-    dlist_destroy(&incidentEdges);
     return retValue;
 }
 
