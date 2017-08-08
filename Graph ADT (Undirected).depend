@@ -50,3 +50,49 @@
 	<dlist.h>
 	<queue.h>
 
+1492893806 source:d:\mine\c++ projects\dictionary based graph adt undirected\src\graph_init.c
+	"graph.h"
+	<bst.h>
+	<list.h>
+	<dlist.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1492893806 d:\mine\c++ projects\dictionary based graph adt undirected\src\graph.h
+	<bst.h>
+	<dlist.h>
+	<stdio.h>
+
+1492893554 d:\mine\c++ projects\dictionary adt\src\bst.h
+	<list.h>
+	<dlist.h>
+	<queue.h>
+
+1492914308 d:\mine\c++ projects\linked list adt\src\list.h
+	<stdlib.h>
+
+1492914308 d:\mine\c++ projects\linked list adt\src\dlist.h
+	<stdlib.h>
+
+1492914428 d:\mine\c++ projects\stack queue adt\src\queue.h
+	<list.h>
+
+1492893806 source:d:\mine\c++ projects\dictionary based graph adt undirected\src\graph_mutation.c
+	"graph.h"
+	<bst.h>
+	<dlist.h>
+	<stdlib.h>
+
+1492893806 source:d:\mine\c++ projects\dictionary based graph adt undirected\src\main.c
+	"graph.h"
+	<dlist.h>
+	<stdio.h>
+	<string.h>
+
+1502168343 source:d:\mine\c++ projects\dictionary based graph adt undirected\src\graph_accessors.c
+	"graph.h"
+	<bst.h>
+	<list.h>
+	<dlist.h>
+

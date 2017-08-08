@@ -30,7 +30,7 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="lib/gpun" prefix_auto="1" extension_auto="1" />
+				<Option output="lib/graph" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="obj/Release/" />
 				<Option type="2" />
